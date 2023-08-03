@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://w44cm6hh1enj"]
+[gd_scene load_steps=24 format=3 uid="uid://w44cm6hh1enj"]
 
+[ext_resource type="Script" path="res://scenes/ingame.gd" id="1_6b4w2"]
 [ext_resource type="Texture2D" uid="uid://35uxn1q7vkre" path="res://assets/tileset.png" id="1_bbdyi"]
 [ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="1_ownme"]
 [ext_resource type="PackedScene" uid="uid://pbusfkam5ddg" path="res://scenes/agent.tscn" id="2_hbisj"]
@@ -180,6 +181,13 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
 sources/0 = SubResource("TileSetAtlasSource_pyj64")
 
+[sub_resource type="InputEventKey" id="InputEventKey_y6ila"]
+device = -1
+keycode = 4194320
+
+[sub_resource type="Shortcut" id="Shortcut_xscsi"]
+events = [SubResource("InputEventKey_y6ila")]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vpg6w"]
 atlas = ExtResource("1_bbdyi")
 region = Rect2(12, 48, 6, 6)
@@ -187,6 +195,13 @@ region = Rect2(12, 48, 6, 6)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wu2su"]
 atlas = ExtResource("1_bbdyi")
 region = Rect2(24, 48, 6, 6)
+
+[sub_resource type="InputEventKey" id="InputEventKey_b6siy"]
+device = -1
+keycode = 4194321
+
+[sub_resource type="Shortcut" id="Shortcut_xup8c"]
+events = [SubResource("InputEventKey_b6siy")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_px42i"]
 atlas = ExtResource("1_bbdyi")
@@ -196,6 +211,13 @@ region = Rect2(18, 48, 6, 6)
 atlas = ExtResource("1_bbdyi")
 region = Rect2(30, 48, 6, 6)
 
+[sub_resource type="InputEventKey" id="InputEventKey_dpnr5"]
+device = -1
+keycode = 4194322
+
+[sub_resource type="Shortcut" id="Shortcut_peukx"]
+events = [SubResource("InputEventKey_dpnr5")]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wct1m"]
 atlas = ExtResource("1_bbdyi")
 region = Rect2(18, 54, 6, 6)
@@ -203,6 +225,13 @@ region = Rect2(18, 54, 6, 6)
 [sub_resource type="AtlasTexture" id="AtlasTexture_oiirr"]
 atlas = ExtResource("1_bbdyi")
 region = Rect2(30, 54, 6, 6)
+
+[sub_resource type="InputEventKey" id="InputEventKey_iho5e"]
+device = -1
+keycode = 4194319
+
+[sub_resource type="Shortcut" id="Shortcut_ics7s"]
+events = [SubResource("InputEventKey_iho5e")]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k78ly"]
 atlas = ExtResource("1_bbdyi")
@@ -219,6 +248,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_6b4w2")
 
 [node name="TextContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -258,6 +288,7 @@ format = 2
 layer_0/tile_data = PackedInt32Array(131073, 327680, 4, 65538, 262144, 4, 196608, 262144, 4, 131074, 65536, 4, 262144, 262144, 4, 327680, 65536, 5, 393216, 393216, 5, 2, 393216, 4, 524290, 393216, 5, 393217, 0, 5, 262146, 393216, 4, 327682, 327680, 5, 393218, 65536, 4, 262147, 65536, 4, 131075, 0, 5, 131076, 327680, 4, 196612, 262144, 4, 327684, 65536, 5, 393219, 262144, 5, 524291, 0, 5, 393223, 262144, 5, 3, 327680, 4, 4, 327680, 4, 5, 0, 5, 6, 458752, 4, 131080, 458752, 4, 196616, 65536, 5, 262152, 327680, 5, 524293, 262144, 5, 393222, 262144, 4, 262151, 327680, 4, 131078, 65536, 4, 131077, 262144, 5, 196614, 262144, 4, 65542, 65536, 5, 262150, 262144, 5, 262149, 0, 5, 393220, 327680, 5, 458756, 327680, 5, 524292, 262144, 5, 524294, 458752, 5, 458758, 65536, 5, 131072, 393216, 4, 327688, 65536, 5, 393224, 458752, 5, 458754, 262144, 4, 131079, 327680, 4, 196609, 458752, 5, 196610, 393216, 5, 196611, 458752, 4, 262145, 458752, 4, 327681, 393216, 5, 327683, 65536, 5, 458755, 0, 5, 458757, 65536, 5, 393221, 65536, 5, 327685, 393216, 4, 327686, 458752, 4, 327687, 65536, 5, 196615, 458752, 5, 65541, 458752, 4, 65540, 393216, 5, 65539, 458752, 5, 196613, 196608, 4, 262148, 65536, 6)
 
 [node name="Agent" parent="MapContainer" instance=ExtResource("2_hbisj")]
+unique_name_in_owner = true
 position = Vector2(27, 27)
 
 [node name="ButtonContainer" type="MarginContainer" parent="."]
@@ -280,6 +311,7 @@ theme_override_constants/margin_bottom = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+shortcut = SubResource("Shortcut_xscsi")
 texture_normal = SubResource("AtlasTexture_vpg6w")
 texture_pressed = SubResource("AtlasTexture_wu2su")
 
@@ -287,6 +319,7 @@ texture_pressed = SubResource("AtlasTexture_wu2su")
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+shortcut = SubResource("Shortcut_xup8c")
 texture_normal = SubResource("AtlasTexture_px42i")
 texture_pressed = SubResource("AtlasTexture_l7xy4")
 
@@ -294,6 +327,7 @@ texture_pressed = SubResource("AtlasTexture_l7xy4")
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+shortcut = SubResource("Shortcut_peukx")
 texture_normal = SubResource("AtlasTexture_wct1m")
 texture_pressed = SubResource("AtlasTexture_oiirr")
 
@@ -301,5 +335,11 @@ texture_pressed = SubResource("AtlasTexture_oiirr")
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+shortcut = SubResource("Shortcut_ics7s")
 texture_normal = SubResource("AtlasTexture_k78ly")
 texture_pressed = SubResource("AtlasTexture_se6w7")
+
+[connection signal="pressed" from="ButtonContainer/Up" to="." method="_on_up_pressed"]
+[connection signal="pressed" from="ButtonContainer/Right" to="." method="_on_right_pressed"]
+[connection signal="pressed" from="ButtonContainer/Down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="ButtonContainer/Left" to="." method="_on_left_pressed"]
