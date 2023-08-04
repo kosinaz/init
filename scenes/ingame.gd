@@ -22,7 +22,8 @@ func _process(_delta):
 
 
 func _draw():
-	draw_rect(Rect2(Vector2(32 - _time, 32 - _time), Vector2(_time * 2, _time * 2)), Color.GREEN, false, 1)
+	if _time < 33:
+		draw_rect(Rect2(Vector2(get_viewport_rect().size.x / 2 - _time, get_viewport_rect().size.y / 2 - _time), Vector2(_time * 2, _time * 2)), Color.GREEN, false, 1)
 
 
 func get_drone(drone_position):
