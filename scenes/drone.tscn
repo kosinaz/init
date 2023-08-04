@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw2nh78slpb0r"]
+
+[ext_resource type="Texture2D" uid="uid://35uxn1q7vkre" path="res://assets/tileset.png" id="1_t23am"]
+[ext_resource type="Script" path="res://scenes/drone.gd" id="1_td31b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xffji"]
+resource_local_to_scene = true
+atlas = ExtResource("1_t23am")
+region = Rect2(6, 12, 6, 6)
+
+[node name="Drone" type="Node2D"]
+script = ExtResource("1_td31b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_xffji")

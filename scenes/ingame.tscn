@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://w44cm6hh1enj"]
+[gd_scene load_steps=25 format=3 uid="uid://w44cm6hh1enj"]
 
 [ext_resource type="Script" path="res://scenes/ingame.gd" id="1_6b4w2"]
 [ext_resource type="Texture2D" uid="uid://35uxn1q7vkre" path="res://assets/tileset.png" id="1_bbdyi"]
 [ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="1_ownme"]
-[ext_resource type="PackedScene" uid="uid://pbusfkam5ddg" path="res://scenes/agent.tscn" id="2_hbisj"]
+[ext_resource type="PackedScene" uid="uid://pbusfkam5ddg" path="res://scenes/hacker.tscn" id="2_hbisj"]
+[ext_resource type="PackedScene" uid="uid://dw2nh78slpb0r" path="res://scenes/drone.tscn" id="5_1rbm5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_dexd8"]
 font = ExtResource("1_ownme")
@@ -261,12 +262,14 @@ offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_constants/margin_top = 1
 
-[node name="Label" type="Label" parent="TextContainer"]
+[node name="Text" type="Label" parent="TextContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
-text = "catch the 0
+text = "preinitialization
 "
 label_settings = SubResource("LabelSettings_dexd8")
+horizontal_alignment = 1
 
 [node name="MapContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -288,7 +291,30 @@ tile_set = SubResource("TileSet_x6n1x")
 format = 2
 layer_0/tile_data = PackedInt32Array(131073, 327680, 4, 65538, 262144, 4, 196608, 262144, 4, 131074, 65536, 4, 262144, 262144, 4, 327680, 65536, 5, 393216, 393216, 5, 2, 393216, 4, 524290, 393216, 5, 393217, 0, 5, 262146, 393216, 4, 327682, 327680, 5, 393218, 65536, 4, 262147, 65536, 4, 131075, 0, 5, 131076, 327680, 4, 196612, 262144, 4, 327684, 65536, 5, 393219, 262144, 5, 524291, 0, 5, 393223, 262144, 5, 3, 327680, 4, 4, 327680, 4, 5, 0, 5, 6, 458752, 4, 131080, 458752, 4, 196616, 65536, 5, 262152, 327680, 5, 524293, 262144, 5, 393222, 262144, 4, 262151, 327680, 4, 131078, 65536, 4, 131077, 262144, 5, 196614, 262144, 4, 65542, 65536, 5, 262150, 262144, 5, 262149, 0, 5, 393220, 327680, 5, 458756, 327680, 5, 524292, 262144, 5, 524294, 458752, 5, 458758, 65536, 5, 131072, 393216, 4, 327688, 65536, 5, 393224, 458752, 5, 458754, 262144, 4, 131079, 327680, 4, 196609, 458752, 5, 196610, 393216, 5, 196611, 458752, 4, 262145, 458752, 4, 327681, 393216, 5, 327683, 65536, 5, 458755, 0, 5, 458757, 65536, 5, 393221, 65536, 5, 327685, 393216, 4, 327686, 458752, 4, 327687, 65536, 5, 196615, 458752, 5, 65541, 458752, 4, 65540, 393216, 5, 65539, 458752, 5, 196613, 196608, 4, 262148, 65536, 6)
 
-[node name="Agent" parent="MapContainer" instance=ExtResource("2_hbisj")]
+[node name="Drone0" parent="MapContainer" groups=["drones"] instance=ExtResource("5_1rbm5")]
+position = Vector2(3, 15)
+
+[node name="Drone1" parent="MapContainer" groups=["drones"] instance=ExtResource("5_1rbm5")]
+position = Vector2(33, 15)
+id = 1
+
+[node name="Drone2" parent="MapContainer" groups=["drones"] instance=ExtResource("5_1rbm5")]
+position = Vector2(45, 39)
+id = 2
+
+[node name="Drone3" parent="MapContainer" groups=["drones"] instance=ExtResource("5_1rbm5")]
+position = Vector2(21, 45)
+id = 3
+
+[node name="Drone4" parent="MapContainer" groups=["drones"] instance=ExtResource("5_1rbm5")]
+position = Vector2(51, 21)
+id = 4
+
+[node name="Drone5" parent="MapContainer" groups=["drones"] instance=ExtResource("5_1rbm5")]
+position = Vector2(27, 3)
+id = 5
+
+[node name="Hacker" parent="MapContainer" instance=ExtResource("2_hbisj")]
 unique_name_in_owner = true
 position = Vector2(27, 27)
 
@@ -340,7 +366,16 @@ shortcut = SubResource("Shortcut_ics7s")
 texture_normal = SubResource("AtlasTexture_k78ly")
 texture_pressed = SubResource("AtlasTexture_se6w7")
 
+[node name="DroneTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="TextTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="pressed" from="ButtonContainer/Up" to="." method="_on_up_pressed"]
 [connection signal="pressed" from="ButtonContainer/Right" to="." method="_on_right_pressed"]
 [connection signal="pressed" from="ButtonContainer/Down" to="." method="_on_down_pressed"]
 [connection signal="pressed" from="ButtonContainer/Left" to="." method="_on_left_pressed"]
+[connection signal="timeout" from="DroneTimer" to="." method="_on_drone_timer_timeout"]
+[connection signal="timeout" from="TextTimer" to="." method="_on_text_timer_timeout"]
