@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://dg5r3bwxdwcle"]
+[gd_scene load_steps=11 format=3 uid="uid://dg5r3bwxdwcle"]
 
-[ext_resource type="Texture2D" uid="uid://ccns4ha8t7hnp" path="res://assets/title.png" id="1_nf382"]
+[ext_resource type="Texture2D" uid="uid://8kramwi0wnix" path="res://assets/title2.png" id="1_ent3v"]
+[ext_resource type="Script" path="res://scenes/home.gd" id="1_yrkgp"]
+[ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="2_ie4g7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d2krs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_otrpx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rwg1"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_g1ejt"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_f3c32"]
+device = -1
+keycode = 4194310
+
+[sub_resource type="InputEventKey" id="InputEventKey_1yv5t"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_r15i1"]
+events = [SubResource("InputEventKey_g1ejt"), SubResource("InputEventKey_f3c32"), SubResource("InputEventKey_1yv5t")]
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -9,6 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yrkgp")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -23,5 +48,29 @@ offset_right = 32.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_nf382")
+texture = ExtResource("1_ent3v")
 stretch_mode = 2
+
+[node name="Button" type="Button" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -14.0
+offset_top = -18.0
+offset_right = 14.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_ie4g7")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d2krs")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_otrpx")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0rwg1")
+shortcut = SubResource("Shortcut_r15i1")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "start"
+
+[connection signal="pressed" from="TextureRect/Button" to="." method="_on_button_pressed"]

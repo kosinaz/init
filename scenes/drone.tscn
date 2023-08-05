@@ -6,7 +6,7 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_xffji"]
 resource_local_to_scene = true
 atlas = ExtResource("1_t23am")
-region = Rect2(6, 12, 6, 6)
+region = Rect2(0, 12, 6, 6)
 
 [node name="Drone" type="Node2D"]
 script = ExtResource("1_td31b")

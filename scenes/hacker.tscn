@@ -1,14 +1,146 @@
-[gd_scene load_steps=4 format=3 uid="uid://pbusfkam5ddg"]
+[gd_scene load_steps=20 format=3 uid="uid://pbusfkam5ddg"]
 
-[ext_resource type="Texture2D" uid="uid://35uxn1q7vkre" path="res://assets/tileset.png" id="1_38fud"]
 [ext_resource type="Script" path="res://scenes/hacker.gd" id="1_s5r3i"]
+[ext_resource type="Texture2D" uid="uid://bmb8e81blwpnx" path="res://assets/hacker.png" id="2_3wnib"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kvo43"]
-atlas = ExtResource("1_38fud")
-region = Rect2(0, 0, 6, 6)
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xhjc"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5eaq3"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm7ba"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(0, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xx5sp"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(0, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d1d7"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxmeb"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(16, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2rgu"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(16, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1l3q"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(16, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d8gi"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1yn2"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(24, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qvkt"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(24, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlve0"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(24, 24, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t48bq"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ncxa"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp4vs"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(8, 16, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ko83"]
+atlas = ExtResource("2_3wnib")
+region = Rect2(8, 24, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2a07m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xhjc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5eaq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm7ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xx5sp")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d1d7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxmeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2rgu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1l3q")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d8gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1yn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qvkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlve0")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t48bq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ncxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp4vs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ko83")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
 
 [node name="Hacker" type="Node2D"]
 script = ExtResource("1_s5r3i")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("AtlasTexture_kvo43")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2a07m")
+animation = &"up"

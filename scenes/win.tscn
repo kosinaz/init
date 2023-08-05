@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://c5q3438p2u1ju"]
+
+[ext_resource type="Script" path="res://scenes/win.gd" id="1_ipane"]
+[ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="1_x6lrh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m32dp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0f8op"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lajc0"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_g1ejt"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_w2xcn"]
+device = -1
+keycode = 4194310
+
+[sub_resource type="InputEventKey" id="InputEventKey_gmxq6"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_lsj6p"]
+events = [SubResource("InputEventKey_g1ejt"), SubResource("InputEventKey_w2xcn"), SubResource("InputEventKey_gmxq6")]
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ipane")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -14.0
+offset_top = -3.0
+offset_right = 14.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_x6lrh")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m32dp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0f8op")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lajc0")
+shortcut = SubResource("Shortcut_lsj6p")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "victory!"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
