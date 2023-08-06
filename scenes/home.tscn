@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://dg5r3bwxdwcle"]
 
-[ext_resource type="Texture2D" uid="uid://8kramwi0wnix" path="res://assets/title2.png" id="1_ent3v"]
 [ext_resource type="Script" path="res://scenes/home.gd" id="1_yrkgp"]
 [ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="2_ie4g7"]
+[ext_resource type="Texture2D" uid="uid://ccns4ha8t7hnp" path="res://assets/title.png" id="2_r4xvy"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d2krs"]
 
@@ -48,7 +48,7 @@ offset_right = 32.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ent3v")
+texture = ExtResource("2_r4xvy")
 stretch_mode = 2
 
 [node name="Button" type="Button" parent="TextureRect"]
@@ -59,9 +59,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -14.0
-offset_top = -18.0
+offset_top = -12.0
 offset_right = 14.0
-offset_bottom = -4.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_ie4g7")
