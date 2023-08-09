@@ -1,6 +1,10 @@
 extends Control
 
 
+@export
+var level = 0
+
+
 var _time = 0
 
 
@@ -28,7 +32,10 @@ func _process(_delta):
 	elif is_instance_valid($%Hacker.movement_tween) and not $%Hacker.movement_tween.is_running():
 		$%Hacker.get_node("Sprite2D").stop()
 	if _ending and get_tree().get_nodes_in_group("drones").size() == 0:
-		add_sibling(load("res://scenes/win.tscn").instantiate())
+		if level == 2:
+			add_sibling(load("res://scenes/win.tscn").instantiate())
+		else:
+			add_sibling(load("res://scenes/level" + str(level + 1) + "title.tscn").instantiate())
 		queue_free()
 
 
@@ -74,8 +81,8 @@ func move(unit, direction):
 					$TextTimer.stop()
 					_ending = true
 			else:
-				add_sibling(load("res://scenes/ingame.tscn").instantiate())
-				queue_free()
+					add_sibling(load("res://scenes/level" + str(level) + ".tscn").instantiate())
+					queue_free()
 		else: return
 	unit.movement_tween = get_tree().create_tween()
 	unit.movement_tween.tween_property(unit, "position", target_position, 0.25)
@@ -93,7 +100,29 @@ func _on_drone_timer_timeout():
 			$%Text.text = "deactivating"
 			drone.queue_free()
 			return
-		if not drone.tagged: move(drone, randi_range(0, 3))
+		if not drone.tagged: 
+			if level == 1:
+				move(drone, randi_range(0, 3))
+			elif not randi_range(0, 3):
+				return
+			elif drone.id == $%Hacker.id:
+				if drone.position.x < $%Hacker.position.x:
+					move(drone, 3)
+				elif drone.position.x > $%Hacker.position.x:
+					move(drone, 1)
+				if drone.position.y < $%Hacker.position.y:
+					move(drone, 0)
+				elif drone.position.y > $%Hacker.position.y:
+					move(drone, 2)
+			else:
+				if drone.position.x < $%Hacker.position.x:
+					move(drone, 1)
+				elif drone.position.x > $%Hacker.position.x:
+					move(drone, 3)
+				if drone.position.y < $%Hacker.position.y:
+					move(drone, 2)
+				elif drone.position.y > $%Hacker.position.y:
+					move(drone, 0)
 
 
 func _on_text_timer_timeout():
