@@ -252,6 +252,9 @@ layer_0/tile_data = PackedInt32Array(131073, 327680, 4, 65538, 262144, 4, 196608
 [node name="Drone0" parent="MapContainer" groups=["drones"] instance=ExtResource("5_1rbm5")]
 position = Vector2(3, 15)
 
+[node name="TargetAnimation" parent="MapContainer/Drone0" index="1"]
+visible = true
+
 [node name="Drone1" parent="MapContainer" groups=["drones"] instance=ExtResource("5_1rbm5")]
 position = Vector2(33, 15)
 id = 1
@@ -368,3 +371,5 @@ autostart = true
 [connection signal="button_up" from="ButtonContainer/Left" to="." method="_on_left_button_up"]
 [connection signal="timeout" from="DroneTimer" to="." method="_on_drone_timer_timeout"]
 [connection signal="timeout" from="TextTimer" to="." method="_on_text_timer_timeout"]
+
+[editable path="MapContainer/Drone0"]

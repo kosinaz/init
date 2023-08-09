@@ -69,10 +69,14 @@ func move(unit, direction):
 			if drone.id == $%Hacker.id:
 				if not $DroneTimer.time_left: 
 					$DroneTimer.start()
-				if get_tree().get_nodes_in_group("drones").size() > $%Hacker.id + 1:
+				var drones = get_tree().get_nodes_in_group("drones")
+				if drones.size() > $%Hacker.id + 1:
 					$%Hacker.id += 1
+					for current_drone in drones:
+						current_drone.get_node("TargetAnimation").visible = $%Hacker.id == current_drone.id
 					drone.tagged = true
 					drone.modulate = Color(0.5, 0.5, 0.5)
+					drone.get_node("Sprite2D").stop()
 				else:
 					$%Text.text = "iterating"
 					$TextTimer.stop()
@@ -83,8 +87,7 @@ func move(unit, direction):
 		else: return
 	unit.movement_tween = get_tree().create_tween()
 	unit.movement_tween.tween_property(unit, "position", target_position, 0.25)
-	if unit == $%Hacker: 
-		unit.get_node("Sprite2D").play(["up", "right", "down", "left"][direction])
+	unit.get_node("Sprite2D").play(["up", "right", "down", "left"][direction])
 
 
 func _on_drone_timer_timeout():
@@ -106,7 +109,7 @@ func _on_text_timer_timeout():
 		$%Text.text = "avoid the others"
 		_text_id = 1
 	elif _text_id == 1:
-		$%Text.text = "tag the " + str($%Hacker.id)
+		$%Text.text = "tag your target"
 		_text_id = 0
 
 
