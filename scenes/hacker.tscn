@@ -144,5 +144,5 @@ script = ExtResource("1_s5r3i")
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_2a07m")
 animation = &"down"
-frame_progress = 0.0558603
+frame_progress = 0.77774
 speed_scale = 1.5
