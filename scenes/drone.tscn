@@ -172,14 +172,16 @@ animations = [{
 script = ExtResource("1_td31b")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_eyn70")
 animation = &"down"
-frame_progress = 0.973184
+frame_progress = 0.196506
 speed_scale = 1.5
 
 [node name="TargetAnimation" type="AnimatedSprite2D" parent="."]
 visible = false
+position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_k56wm")
 autoplay = "default"
-frame_progress = 0.511859
+frame_progress = 0.73518
 speed_scale = 1.5

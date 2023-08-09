@@ -13,14 +13,6 @@ var _ending = false
 var _drone_id = 0
 
 
-const WALLS = [
-	[Vector2i(2, 4), Vector2i(3, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4), Vector2i(0, 5), Vector2i(2, 5)],
-	[Vector2i(2, 4), Vector2i(3, 4), Vector2i(7, 4), Vector2i(1, 5), Vector2i(3, 5), Vector2i(5, 5), Vector2i(7, 5)],
-	[Vector2i(3, 4), Vector2i(0, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(6, 5), Vector2i(7, 5)],
-	[Vector2i(2, 4), Vector2i(4, 4), Vector2i(6, 4), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(6, 5)],
-]
-
-
 func _process(_delta):
 	if _time < 33:
 		_time += 2
@@ -47,7 +39,7 @@ func _draw():
 
 func get_drone(drone_position):
 	for drone in get_tree().get_nodes_in_group("drones"):
-		if round(drone.position / 6) == round(drone_position / 6):
+		if round(drone.position / 8) == round(drone_position / 8):
 			return drone
 	return null
 
@@ -55,14 +47,14 @@ func get_drone(drone_position):
 func move(unit, direction):
 	if _ending: return
 	if is_instance_valid(unit.movement_tween) and unit.movement_tween.is_running(): return
-	var map_position = $%TileMap.local_to_map(unit.position)
-	var tile = $%TileMap.get_cell_atlas_coords(0, Vector2i(map_position))
-	if WALLS[direction].has(tile): return
 	var target_position = Vector2(
-		unit.position.x + [0, 6, 0, -6][direction], 
-		unit.position.y + [-6, 0, 6, 0][direction]
+		unit.position.x + [0, 8, 0, -8][direction], 
+		unit.position.y + [-8, 0, 8, 0][direction]
 	)
-	if round($%Hacker.position / 6) == round(target_position / 6): return
+	var target_map_position = $%TileMap.local_to_map(target_position)
+	var tile = $%TileMap.get_cell_atlas_coords(0, Vector2i(target_map_position))
+	if tile == Vector2i(-1, -1): return
+	if round($%Hacker.position / 8) == round(target_position / 8): return
 	var drone = get_drone(target_position)
 	if drone != null:
 		if unit == $%Hacker:
