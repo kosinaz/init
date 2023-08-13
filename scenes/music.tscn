@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds2tyacgorox0"]
+
+[ext_resource type="AudioStream" uid="uid://d2j2wwyv7qoki" path="res://assets/boss-time.mp3" id="1_jcka7"]
+
+[node name="Music" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_jcka7")
+autoplay = true

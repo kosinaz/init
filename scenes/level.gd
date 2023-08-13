@@ -158,7 +158,6 @@ func _on_drone_timer_timeout():
 	var drones = get_tree().get_nodes_in_group("drones")
 	for drone in drones:
 		if _ending and drone.id == _drone_id:
-			print(drone.id)
 			drone.modulate = Color(1, 1, 1)
 			_drone_id += 1
 			return
