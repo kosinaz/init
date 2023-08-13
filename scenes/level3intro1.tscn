@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://bcb5spfu6ojo2"]
+
+[ext_resource type="Script" path="res://scenes/level3intro1.gd" id="1_hwk2x"]
+[ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="2_r512c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m32dp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0f8op"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lajc0"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_g1ejt"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="InputEventKey" id="InputEventKey_w2xcn"]
+device = -1
+keycode = 4194310
+
+[sub_resource type="InputEventKey" id="InputEventKey_gmxq6"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_lsj6p"]
+events = [SubResource("InputEventKey_g1ejt"), SubResource("InputEventKey_w2xcn"), SubResource("InputEventKey_gmxq6")]
+
+[node name="Intro1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hwk2x")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_r512c")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m32dp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0f8op")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lajc0")
+shortcut = SubResource("Shortcut_lsj6p")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "level 3 of s3ctor
+is fragmented
+the iteration
+can't be finished
+with a single
+iterator
+
+but don't worry
+help is on the
+way"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

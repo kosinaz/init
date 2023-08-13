@@ -111,14 +111,6 @@ id = 2
 position = Vector2(20, 44)
 id = 3
 
-[node name="Drone4" parent="MapContainer" groups=["drones"] instance=ExtResource("3_o3jnh")]
-position = Vector2(52, 12)
-id = 4
-
-[node name="Drone5" parent="MapContainer" groups=["drones"] instance=ExtResource("3_o3jnh")]
-position = Vector2(4, 60)
-id = 5
-
 [node name="Hacker" parent="MapContainer" instance=ExtResource("4_gacq8")]
 unique_name_in_owner = true
 position = Vector2(28, 28)

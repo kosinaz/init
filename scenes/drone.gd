@@ -1,3 +1,4 @@
+class_name Drone
 extends Node2D
 
 
