@@ -1,0 +1,216 @@
+[gd_scene load_steps=18 format=3 uid="uid://dkm8aeclscldq"]
+
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_4v20q"]
+[ext_resource type="Texture2D" uid="uid://35uxn1q7vkre" path="res://assets/tileset.png" id="2_rmjwb"]
+[ext_resource type="PackedScene" uid="uid://dw2nh78slpb0r" path="res://scenes/drone.tscn" id="3_lcwrp"]
+[ext_resource type="PackedScene" uid="uid://pbusfkam5ddg" path="res://scenes/hacker.tscn" id="4_623wg"]
+[ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="5_twu2c"]
+[ext_resource type="Texture2D" uid="uid://clno7e538xxq7" path="res://assets/buttons.png" id="6_kmpur"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hr32p"]
+texture = ExtResource("2_rmjwb")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_x6n1x"]
+tile_size = Vector2i(8, 8)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.501961, 0.345098, 0.25098, 1)
+sources/2 = SubResource("TileSetAtlasSource_hr32p")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dexd8"]
+font = ExtResource("5_twu2c")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jier"]
+atlas = ExtResource("6_kmpur")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtixy"]
+atlas = ExtResource("6_kmpur")
+region = Rect2(8, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjqhu"]
+atlas = ExtResource("6_kmpur")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0an0"]
+atlas = ExtResource("6_kmpur")
+region = Rect2(24, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8s18i"]
+atlas = ExtResource("6_kmpur")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc4nd"]
+atlas = ExtResource("6_kmpur")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as27m"]
+atlas = ExtResource("6_kmpur")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbw7a"]
+atlas = ExtResource("6_kmpur")
+region = Rect2(16, 8, 8, 8)
+
+[node name="Level4" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4v20q")
+level = 4
+
+[node name="MapContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -28.0
+offset_top = -32.0
+offset_right = 28.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TileMap" type="TileMap" parent="MapContainer"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_x6n1x")
+format = 2
+layer_0/tile_data = PackedInt32Array(327686, 196610, 0, 327684, 196610, 0, 327682, 196610, 0, 327680, 196610, 0, 196614, 196610, 0, 262150, 196610, 0, 262144, 196610, 0, 65538, 196610, 0, 65539, 196610, 0, 65540, 196610, 0, 131078, 196610, 0, 65542, 196610, 0, 65541, 196610, 0, 65536, 196610, 0, 131072, 196610, 0, 196608, 196610, 0, 393216, 196610, 0, 458752, 196610, 0, 458758, 196610, 0, 393222, 196610, 0, 65537, 196610, 0, 327681, 196610, 0, 327685, 196610, 0, 327683, 196610, 0, 131074, 196610, 0, 196610, 196610, 0, 262146, 196610, 0, 196611, 196610, 0, 196612, 196610, 0, 196613, 196610, 0)
+
+[node name="Drone0" parent="MapContainer" groups=["drones"] instance=ExtResource("3_lcwrp")]
+position = Vector2(52, 60)
+
+[node name="TargetAnimation" parent="MapContainer/Drone0" index="1"]
+visible = true
+
+[node name="Drone1" parent="MapContainer" groups=["drones"] instance=ExtResource("3_lcwrp")]
+position = Vector2(52, 12)
+id = 1
+
+[node name="Drone2" parent="MapContainer" groups=["drones"] instance=ExtResource("3_lcwrp")]
+position = Vector2(4, 12)
+id = 2
+
+[node name="Drone3" parent="MapContainer" groups=["drones"] instance=ExtResource("3_lcwrp")]
+position = Vector2(4, 60)
+id = 3
+
+[node name="Hacker" parent="MapContainer" instance=ExtResource("4_623wg")]
+unique_name_in_owner = true
+position = Vector2(20, 36)
+
+[node name="Hacker2" parent="MapContainer" instance=ExtResource("4_623wg")]
+unique_name_in_owner = true
+position = Vector2(4, 20)
+
+[node name="TextContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -30.0
+offset_right = 30.0
+offset_bottom = 10.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 1
+
+[node name="Text" type="Label" parent="TextContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "preinitialization
+"
+label_settings = SubResource("LabelSettings_dexd8")
+horizontal_alignment = 1
+
+[node name="ButtonContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -12.0
+offset_top = -16.0
+offset_right = 12.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = 1
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="Up" type="TextureButton" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+texture_normal = SubResource("AtlasTexture_1jier")
+texture_pressed = SubResource("AtlasTexture_vtixy")
+
+[node name="Right" type="TextureButton" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+shortcut_feedback = false
+shortcut_in_tooltip = false
+texture_normal = SubResource("AtlasTexture_gjqhu")
+texture_pressed = SubResource("AtlasTexture_i0an0")
+
+[node name="Down" type="TextureButton" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+shortcut_feedback = false
+shortcut_in_tooltip = false
+texture_normal = SubResource("AtlasTexture_8s18i")
+texture_pressed = SubResource("AtlasTexture_oc4nd")
+
+[node name="Left" type="TextureButton" parent="ButtonContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+shortcut_feedback = false
+shortcut_in_tooltip = false
+texture_normal = SubResource("AtlasTexture_as27m")
+texture_pressed = SubResource("AtlasTexture_vbw7a")
+
+[node name="DroneTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="TextTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="button_down" from="ButtonContainer/Up" to="." method="_on_up_button_down"]
+[connection signal="button_up" from="ButtonContainer/Up" to="." method="_on_up_button_up"]
+[connection signal="button_down" from="ButtonContainer/Right" to="." method="_on_right_button_down"]
+[connection signal="button_up" from="ButtonContainer/Right" to="." method="_on_right_button_up"]
+[connection signal="button_down" from="ButtonContainer/Down" to="." method="_on_down_button_down"]
+[connection signal="button_up" from="ButtonContainer/Down" to="." method="_on_down_button_up"]
+[connection signal="button_down" from="ButtonContainer/Left" to="." method="_on_left_button_down"]
+[connection signal="button_up" from="ButtonContainer/Left" to="." method="_on_left_button_up"]
+[connection signal="timeout" from="DroneTimer" to="." method="_on_drone_timer_timeout"]
+[connection signal="timeout" from="TextTimer" to="." method="_on_text_timer_timeout"]
+
+[editable path="MapContainer/Drone0"]

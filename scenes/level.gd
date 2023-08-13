@@ -25,8 +25,12 @@ var _hacker_map = {}
 
 func _ready():
 	_hacker_map[$%TileMap.local_to_map($%Hacker.position)] = $%Hacker
+	if has_node("%Hacker2"): 
+		_hacker_map[$%TileMap.local_to_map($%Hacker2.position)] = $%Hacker2
 	for drone in get_tree().get_nodes_in_group("drones"):
 		_drone_map[$%TileMap.local_to_map(drone.position)] = drone
+		if level == 4:
+			drone.modulate = Color(0.5, 0.5, 0.5)
 
 
 func _process(_delta):
@@ -54,8 +58,17 @@ func _process(_delta):
 			move($%Hacker2, 3)
 		elif is_instance_valid($%Hacker2.movement_tween) and not $%Hacker2.movement_tween.is_running():
 			$%Hacker2.get_node("Sprite2D").stop()
+	if level == 4:
+		if $%Hacker2.position.x < $%Hacker.position.x:
+			move($%Hacker2, 1)
+		elif $%Hacker2.position.x > $%Hacker.position.x:
+			move($%Hacker2, 3)
+		if $%Hacker2.position.y < $%Hacker.position.y:
+			move($%Hacker2, 2)
+		elif $%Hacker2.position.y > $%Hacker.position.y:
+			move($%Hacker2, 0)
 	if _ending and get_tree().get_nodes_in_group("drones").size() == 0:
-		if level == 3:
+		if level == 4:
 			add_sibling(load("res://scenes/win.tscn").instantiate())
 		else:
 			add_sibling(load("res://scenes/level" + str(level + 1) + "title.tscn").instantiate())
@@ -75,6 +88,8 @@ func get_drone(drone_position):
 
 
 func move(unit, direction):
+	if level == 4:
+		$DroneTimer.start()
 	if _ending: return
 	if is_instance_valid(unit.movement_tween) and unit.movement_tween.is_running(): return
 	var target_map_position = Vector2i(
@@ -84,10 +99,14 @@ func move(unit, direction):
 	var target_position = $%TileMap.map_to_local(target_map_position)
 	var tile = $%TileMap.get_cell_atlas_coords(0, Vector2i(target_map_position))
 	if tile == Vector2i(-1, -1): return
-	if target_map_position == $%TileMap.local_to_map($%Hacker.position): return
+	if target_map_position == $%TileMap.local_to_map($%Hacker.position) or (has_node("%Hacker2") and target_map_position == $%TileMap.local_to_map($%Hacker2.position)):
+		if level < 4: return
+		add_sibling(load("res://scenes/level" + str(level) + ".tscn").instantiate())
+		queue_free()
+		return
 	var target_drone = _drone_map.get(target_map_position)
 	if target_drone != null:
-		if unit == $%Hacker or (has_node("%Hacker2") and unit == $%Hacker2):
+		if unit == $%Hacker or (has_node("%Hacker2") and unit == $%Hacker2 and level == 3):
 			if target_drone.id == $%Hacker.id:
 				if not $DroneTimer.time_left: 
 					$DroneTimer.start()
@@ -97,28 +116,39 @@ func move(unit, direction):
 					for current_drone in drones:
 						current_drone.get_node("TargetAnimation").visible = $%Hacker.id == current_drone.id
 					target_drone.tagged = true
-					target_drone.modulate = Color(0.5, 0.5, 0.5)
+					if level < 4:
+						target_drone.modulate = Color(0.5, 0.5, 0.5)
+					else:
+						target_drone.modulate = Color(1, 1, 1)
 					target_drone.get_node("Sprite2D").stop()
 				else:
+					if level == 4: 
+						add_sibling(load("res://scenes/win.tscn").instantiate())
+						queue_free()
+						return
 					$%Text.text = "iterating"
 					$TextTimer.stop()
 					_ending = true
 			else:
 				add_sibling(load("res://scenes/level" + str(level) + ".tscn").instantiate())
 				queue_free()
-		else: return
+		elif level < 4: return
 	unit.movement_tween = get_tree().create_tween()
 	unit.movement_tween.tween_property(unit, "position", target_position, 0.25)
 	unit.movement_tween.tween_callback(_clear_map_position.bind($%TileMap.local_to_map(unit.position), unit))
 	unit.get_node("Sprite2D").play(["up", "right", "down", "left"][direction])
-	if unit == $%Hacker:
-		_hacker_map[target_map_position] = unit
+	if unit == $%Hacker or (has_node("%Hacker2") and unit == $%Hacker2):
+		if _hacker_map.has(target_map_position) and _hacker_map[target_map_position] != null:
+			add_sibling(load("res://scenes/level" + str(level) + ".tscn").instantiate())
+			queue_free()
+		else:
+			_hacker_map[target_map_position] = unit
 	else:
 		_drone_map[target_map_position] = unit
 
 
 func _clear_map_position(map_position, unit):
-	if unit == $%Hacker:
+	if unit == $%Hacker or (has_node("%Hacker2") and unit == $%Hacker2):
 		_hacker_map[map_position] = null
 	else:
 		_drone_map[map_position] = null
@@ -128,6 +158,7 @@ func _on_drone_timer_timeout():
 	var drones = get_tree().get_nodes_in_group("drones")
 	for drone in drones:
 		if _ending and drone.id == _drone_id:
+			print(drone.id)
 			drone.modulate = Color(1, 1, 1)
 			_drone_id += 1
 			return

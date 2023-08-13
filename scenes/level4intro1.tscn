@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5q3438p2u1ju"]
+[gd_scene load_steps=10 format=3 uid="uid://bjtc4piis6nvn"]
 
-[ext_resource type="Script" path="res://scenes/win.gd" id="1_ipane"]
-[ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="1_x6lrh"]
+[ext_resource type="Script" path="res://scenes/level4intro1.gd" id="1_e7wh8"]
+[ext_resource type="FontFile" uid="uid://bqqvjjmeto3q6" path="res://assets/font.fnt" id="2_hwxab"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m32dp"]
 
@@ -25,14 +25,14 @@ unicode = 32
 [sub_resource type="Shortcut" id="Shortcut_lsj6p"]
 events = [SubResource("InputEventKey_g1ejt"), SubResource("InputEventKey_w2xcn"), SubResource("InputEventKey_gmxq6")]
 
-[node name="Win" type="Control"]
+[node name="Intro1" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ipane")
+script = ExtResource("1_e7wh8")
 
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(64, 64)
@@ -48,23 +48,23 @@ offset_right = 32.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_x6lrh")
+theme_override_fonts/font = ExtResource("2_hwxab")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_m32dp")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_0f8op")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_lajc0")
 shortcut = SubResource("Shortcut_lsj6p")
 shortcut_feedback = false
 shortcut_in_tooltip = false
-text = "well done!
-the initialization 
-was successful!
+text = "oh no! this whole
+operation was a
+setup
 
-the reactivated 
-drones caught 
-the hacker
-
-you can finally
-leave the s3ctor
+the drones were
+working fine
+it was the other
+iterator who
+convinced you
+to sabotage them
 "
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
